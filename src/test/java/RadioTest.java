@@ -31,7 +31,7 @@ class RadioTest {
     public void shouldSetMinCurrentStation() {
 
         Radio radio = new Radio();
-        radio.setCurrentStation(9);
+        radio.setCurrentStation(19);
         radio.setCurrentStation(0);
         int expected = 0;
         int actual = radio.getCurrentStation();
@@ -235,4 +235,31 @@ class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSetMoreStations() {
+
+        Radio radio = new Radio(30);
+
+        radio.setCurrentStation(15);
+
+        int expected = 15;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetFirstStationAfterLimitWithMoreStations() {
+
+        Radio radio = new Radio(99);
+        radio.setCurrentStation(98);
+        radio.nextStation();
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
+
+
